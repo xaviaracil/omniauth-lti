@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Xavi Aracil"]
   s.email       = ["xavi@xadsolutions.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{OmniAuth strategy for LTI spec}
+  s.description = %q{OmniAuth strategy for providing LTI authentication to an OmniAuth application}
 
   s.rubyforge_project = "omniauth-lti"
 
@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
-  s.add_development_dependency "ims-lti"
+  s.add_development_dependency 'ims-lti'
 end
