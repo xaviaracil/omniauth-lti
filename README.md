@@ -10,15 +10,22 @@ Usage
 
 Add the provider to your OmniAuth stack, giving the tool_consumer credentials:
 
-	provider :lti, :oauth_credentials => {:test => 'secret'}
+	Rails.application.config.middleware.use OmniAuth::Builder do
+	  provider :lti, :oauth_credentials => {:test => 'secret'}
+	end
 
 Include Omniauth::Lti::Context in your application_controller:
 
-	include Omniauth::Lti::Context
+	class ApplicationController < ActionController::Base
+  	  ...
+	  include Omniauth::Lti::Context
+  	  ...
+	end
 
 When you create the session in your sessions\_controller, call to save_lti_context for saving LTI context through all the application
 
-For accessing the context anywhere in your application, just call the helper method lti\_tool\_provider:
+For accessing the context anywhere in your application, just call the helper method lti\_tool\_provider. 
+For instance, to show the title of the resource that call your application just put in your haml view:
 
 	=lti_tool_provider.resource_link_title
 
