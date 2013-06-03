@@ -5,6 +5,17 @@ The OmniAuth LTI gem provides a way for applications to authenticate users using
 
 It relies on [ims-lti gem][] for validating LTI data.
 
+Installation
+============
+
+Add the gem in your Gemfile:
+	
+	gem 'omniauth-lti'
+	
+And install it using bundle
+
+	bundle install
+
 Usage
 =====
 
