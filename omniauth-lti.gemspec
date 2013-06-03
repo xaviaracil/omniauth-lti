@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "omniauth-lti"
   s.version     = Omniauth::Lti::VERSION
   s.authors     = ["Xavi Aracil"]
-  s.email       = ["xavi@xadsolutions.com"]
-  s.homepage    = ""
+  s.email       = ["xavi@laibeth.com"]
+  s.homepage    = "https://github.com/xaviaracil/omniauth-lti"
   s.summary     = %q{OmniAuth strategy for LTI spec}
   s.description = %q{OmniAuth strategy for providing LTI authentication to an OmniAuth application}
 
