@@ -14,6 +14,8 @@ module OmniAuth
       def callback_phase
         # validate request
         return fail!(:invalid_credentials) unless valid_lti?
+        #save the launch parameters for use in later request
+        env['lti.launch_params'] = @tp.to_params
         super
       end
       
@@ -22,7 +24,7 @@ module OmniAuth
       
       # define the hash of info about user
       info do
-        { 
+        {
           :name => @tp.username(options.default_user_name),
           :email => @tp.lis_person_contact_email_primary,
           :first_name => @tp.lis_person_name_given,
@@ -47,9 +49,8 @@ module OmniAuth
       private
       
       def valid_lti?
-        # key and secret
-        key = params['oauth_consumer_key']
-        @tp = IMS::LTI::ToolProvider.new(key, options.oauth_credentials[key], params)
+        key = request.params['oauth_consumer_key']
+        @tp = IMS::LTI::ToolProvider.new(key, options.oauth_credentials[key], request.params)
         @tp.valid_request!(request)
       end
     end
