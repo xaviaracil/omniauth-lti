@@ -42,10 +42,10 @@ For instance, to show the title of the resource that call your application just 
 
 You can find an example web application in [omniauth-lti-example-webapp][]
 
-TODO
-=====
+Outcomes
+========
 
-Add support for outcomes
+`lti_tool_provider` gives you the full `IMS::LTI::ToolProvider` class. Please refer to (https://github.com/instructure/ims-lti#returning-results-of-a-quizassignment) to see how to do outcomes with this class
 
 [ims-lti gem]: https://github.com/instructure/ims-lti
 [omniauth-lti-example-webapp]: https://github.com/xaviaracil/omniauth-lti-example
