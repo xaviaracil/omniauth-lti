@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Omniauth-lti by xaviaracil</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Omniauth-lti</h1>
+        <p>Omniauth strategy to authenticate using LTI spec</p>
+
+        <p class="view"><a href="https://github.com/xaviaracil/omniauth-lti">View the Project on GitHub <small>xaviaracil/omniauth-lti</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/xaviaracil/omniauth-lti/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/xaviaracil/omniauth-lti/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/xaviaracil/omniauth-lti">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="omniauth-lti" class="anchor" href="#omniauth-lti"><span class="octicon octicon-link"></span></a>OmniAuth LTI</h1>
+
+<p>The OmniAuth LTI gem provides a way for applications to authenticate users using LTI 1.1 specification. </p>
+
+<p>It relies on <a href="https://github.com/instructure/ims-lti">ims-lti gem</a> for validating LTI data.</p>
+
+<h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>Add the gem in your Gemfile:</p>
+
+<pre><code>gem 'omniauth-lti'
+</code></pre>
+
+<p>And install it using bundle</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<h1>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>Add the provider to your OmniAuth stack, giving the tool_consumer credentials:</p>
+
+<pre><code>Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :lti, :oauth_credentials =&gt; {:test =&gt; 'secret'}
+end
+</code></pre>
+
+<p>Include <code>Omniauth::Lti::Context</code> in your <code>application_controller</code>:</p>
+
+<pre><code>class ApplicationController &lt; ActionController::Base
+  ...
+  include Omniauth::Lti::Context
+  ...
+end
+</code></pre>
+
+<p>When you create the session in your <code>sessions\_controller</code>, call to <code>save_lti_context</code> for saving LTI context through all the application</p>
+
+<p>For accessing the context anywhere in your application, just call the helper method <code>lti_tool_provider</code>. 
+For instance, to show the title of the resource that call your application just put in your haml view:</p>
+
+<pre><code>=lti_tool_provider.resource_link_title
+</code></pre>
+
+<p>You can find an example web application in <a href="https://github.com/xaviaracil/omniauth-lti-example">omniauth-lti-example-webapp</a></p>
+
+<h1>
+<a name="outcomes" class="anchor" href="#outcomes"><span class="octicon octicon-link"></span></a>Outcomes</h1>
+
+<p><code>lti_tool_provider</code> gives you the full <code>IMS::LTI::ToolProvider</code> class. Please refer to (<a href="https://github.com/instructure/ims-lti#returning-results-of-a-quizassignment">https://github.com/instructure/ims-lti#returning-results-of-a-quizassignment</a>) to see how to do outcomes with this class</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/xaviaracil">xaviaracil</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
