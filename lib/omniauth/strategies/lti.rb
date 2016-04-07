@@ -8,10 +8,15 @@ module OmniAuth
       # - the value is the comsumer_secret
       option :oauth_credentials, {}
 
-      # Defaul username for users when LTI context doesn't provide a name
+      # Default username for users when LTI context doesn't provide a name
       option :default_user_name, 'User'
 
+      # Allow all request methods by default
+      option :only_accept_posts, false
+
       def callback_phase
+        # prevent invalid request types
+        return bad_request! unless request_method_allowed?
         # validate request
         return fail!(:invalid_credentials) unless valid_lti?
         #save the launch parameters for use in later request
@@ -56,6 +61,14 @@ module OmniAuth
       end
 
       private
+
+      def request_method_allowed?
+        !options.only_accept_posts || request.request_method == 'POST'
+      end
+
+      def bad_request!
+        [400, {}, ['400 Bad Request']]
+      end
 
       def valid_lti?
         key = request.params['oauth_consumer_key']
